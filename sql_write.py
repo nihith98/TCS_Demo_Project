@@ -8,6 +8,7 @@ def add_plan(add_name,add_tariff,add_validity,add_rental,add_type,enable_flag=1)
     add_cursor.execute(strcmd)
     mydb.commit()
     add_cursor.close()
+    return None
 
 def update_plan(up_id,up_name,up_tariff,up_validity,up_rental,up_type,enable_flag=1):
     mydb = mysql.connector.connect(host='127.0.0.1',user='root',password='Nihith@98',database='Tariff_Module')
@@ -17,6 +18,7 @@ def update_plan(up_id,up_name,up_tariff,up_validity,up_rental,up_type,enable_fla
     update_cursor.execute(strcmd)
     mydb.commit()
     update_cursor.close()
+    return None
 
 def disable_plan(up_id):
     mydb = mysql.connector.connect(host='127.0.0.1',user='root',password='Nihith@98',database='Tariff_Module')
@@ -25,6 +27,7 @@ def disable_plan(up_id):
     disable_cursor.execute(strcmd)
     mydb.commit()
     disable_cursor.close()
+    return None
 
 def enable_plan(up_id):
     mydb = mysql.connector.connect(host='127.0.0.1',user='root',password='Nihith@98',database='Tariff_Module')
@@ -33,6 +36,7 @@ def enable_plan(up_id):
     enable_cursor.execute(strcmd)
     mydb.commit()
     enable_cursor.close()
+    return None
 
 def delete_plan(up_id):
     mydb = mysql.connector.connect(host='127.0.0.1',user='root',password='Nihith@98',database='Tariff_Module')
@@ -41,3 +45,4 @@ def delete_plan(up_id):
     del_cursor.execute(strcmd)
     mydb.commit()
     del_cursor.close()
+    return None

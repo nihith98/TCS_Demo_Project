@@ -1,48 +1,88 @@
 import mysql.connector
-from sql_write import *
+class NoValueException(Exception):
+    pass
+def add_plan(add_name,add_tariff,add_validity,add_rental,add_type,enable_flag=1):
+    mydb = mysql.connector.connect(host='127.0.0.1',user='root',password='Nihith@98',database='Tariff_Module')
+    add_cursor = mydb.cursor()
+    try:
+        if (add_name=="" or add_tariff=="" or add_validity=="" or add_rental=="" or add_type=="" ):
+            raise NoValueException
+        strcmd = "INSERT INTO plans (name, tariff, validity, rental,type,enable_flag) VALUES ('"+add_name+"',"+str(add_tariff)+','+str(add_validity)+",'"+add_rental+"','"+add_type+"',"+str(enable_flag)+")" 
+        print(strcmd)
+        add_cursor.execute(strcmd)
+    
+        mydb.commit()
+        add_cursor.close()
+    except NoValueException:
+        print("Missiong Values!!!")
+    return None
 
-#Connection with mySQL
-mydb = mysql.connector.connect(host='127.0.0.1',user='root',password='Nihith@98',database='Tariff_Module')
-print("Printing the database object")
-print(mydb) #Prints type and address of Database
+def update_plan(up_id,up_name,up_tariff,up_validity,up_rental,up_type,enable_flag=1):
+    mydb = mysql.connector.connect(host='127.0.0.1',user='root',password='Nihith@98',database='Tariff_Module')
+    update_cursor = mydb.cursor()
+    try:
+        if (up_id=="" or up_name=="" or up_tariff=="" or up_validity=="" or up_rental=="" or up_type=="" ):
+            raise NoValueException
+        strcmd = "UPDATE plans SET name='"+up_name+"',tariff="+str(up_tariff)+",validity="+str(up_validity)+",rental='"+up_rental+"',type='"+up_type+"',enable_flag="+str(enable_flag)+" WHERE plan_id="+str(up_id)
+        print(strcmd)
+        update_cursor.execute(strcmd)
+        mydb.commit()
+        update_cursor.close()
+    except NoValueException:
+        print("Missing Values!!!")
+    return None
 
-mycursor = mydb.cursor()
+def disable_plan(up_id):
+    mydb = mysql.connector.connect(host='127.0.0.1',user='root',password='Nihith@98',database='Tariff_Module')
+    disable_cursor = mydb.cursor()
+    try:
+        if (up_id==""):
+            raise NoValueException
+        strcmd = "UPDATE plans SET enable_flag="+str(0)+" WHERE plan_id="+str(up_id)
+        disable_cursor.execute(strcmd)
+        mydb.commit()
+        disable_cursor.close()
+    except NoValueException:
+        print("Missing Value!!!")
+    return None
 
-#mycursor.execute('CREATE DATABASE Tariff_Module')
-print("Showing all the databases:")
-mycursor.execute('SHOW DATABASES')
+def enable_plan(up_id):
+    mydb = mysql.connector.connect(host='127.0.0.1',user='root',password='Nihith@98',database='Tariff_Module')
+    enable_cursor = mydb.cursor()
+    try:
+        if (up_id==""):
+            raise NoValueException
+        strcmd = "UPDATE plans SET enable_flag="+str(1)+" WHERE plan_id="+str(up_id)
+        enable_cursor.execute(strcmd)
+        mydb.commit()
+        enable_cursor.close()
+    except NoValueException:
+        print("Missing Value!!!")
+    return None
 
-for x in mycursor:
-    print(x)
-
-
-#mycursor.execute('CREATE TABLE plans (plan_id INT AUTO_INCREMENT PRIMARY KEY)')
-
-print("Showing all the tables:")
-mycursor.execute('SHOW TABLES')
-for x in mycursor:
-    print(x)
-
-
-#mycursor.execute('ALTER TABLE plans ADD name VARCHAR(30)')
-#mycursor.execute("ALTER TABLE plans ADD type CHAR(1)")
-#mycursor.execute('ALTER TABLE plans ADD tariff FLOAT(4)')
-#mycursor.execute('ALTER TABLE plans ADD validity INT')
-#mycursor.execute('ALTER TABLE plans ADD rental VARCHAR(100)')
-mycursor.execute("SELECT * FROM plans")
-
-print(type(mycursor.description[1]))
-for x in mycursor.description:
-    print(x[0])
-
-#add_plan('voice3',0.6,20,'NA','V',1)
-#mycursor.execute("ALTER TABLE plans ADD enable_flag INT")
-#disable_plan(4)
-enable_plan(4)
-delete_plan(5)
-display_plan()
-
-
-
-
-
+def delete_plan(up_id):
+    mydb = mysql.connector.connect(host='127.0.0.1',user='root',password='Nihith@98',database='Tariff_Module')
+    del_cursor = mydb.cursor()
+    try:
+        if (up_id==""):
+            raise NoValueException
+        strcmd = "DELETE FROM plans WHERE plan_id="+str(up_id)
+        del_cursor.execute(strcmd)
+        mydb.commit()
+        del_cursor.close()
+    except NoValueException:
+        print("Missing Value!!!")
+    return None
+    
+def display_plan():
+    connection = mysql.connector.connect(host='localhost',database='test1',user='root',password='januma')
+    if connection.is_connected():
+        cursor = connection.cursor()
+        cursor.execute("select * from plan;")
+        record = cursor.fetchall()
+        if record !=None:
+            print("{:<15}{:<22}{:<10}{:<10}{:<10}{:<10}{:<20}".format("Plan_ID","Name","Tarrif","Validity","Rental","Type","Enable_Flag"))
+            for i in range(len(record)):
+                print("{:<15}{:<22}{:<10}{:<10}{:<10}{:<10}{:<20}".format(record[i][0],record[i][1],record[i][2],record[i][3],record[i][4],record[i][5],record[i][6]))
+    cursor.close()
+    connection.close()

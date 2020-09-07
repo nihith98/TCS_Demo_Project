@@ -11,5 +11,3 @@ def admin_login(username,passwd):
             if x[2] == passwd:
                 flag = 1
     return flag
-
-print(admin_login('root','12345'))

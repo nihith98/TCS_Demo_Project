@@ -40,3 +40,4 @@ for x in mycursor.description:
 #disable_plan(4)
 enable_plan(4)
 delete_plan(5)
+display_plan()

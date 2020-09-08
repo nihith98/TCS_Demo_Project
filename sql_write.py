@@ -51,7 +51,7 @@ def display_plan():
     connection = mysql.connector.connect(host='127.0.0.1',database='Tariff_Module',user='root',password='Nihith@98')
     if connection.is_connected():
         cursor = connection.cursor()
-        cursor.execute("select * from plan;")
+        cursor.execute("select * from plans;")
         record = cursor.fetchall()
         if record !=None:
             print("{:<15}{:<22}{:<10}{:<10}{:<10}{:<10}{:<20}".format("Plan_ID","Name","Tarrif","Validity","Rental","Type","Enable_Flag"))
@@ -59,4 +59,4 @@ def display_plan():
                 print("{:<15}{:<22}{:<10}{:<10}{:<10}{:<10}{:<20}".format(record[i][0],record[i][1],record[i][2],record[i][3],record[i][4],record[i][5],record[i][6]))
     cursor.close()
     connection.close()
-    return None
+    return record

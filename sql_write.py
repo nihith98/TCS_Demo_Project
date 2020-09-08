@@ -48,7 +48,7 @@ def delete_plan(up_id):
     return None
     
 def display_plan():
-    connection = mysql.connector.connect(host='localhost',database='test1',user='root',password='januma')
+    connection = mysql.connector.connect(host='127.0.0.1',database='Tariff_Module',user='root',password='Nihith@98')
     if connection.is_connected():
         cursor = connection.cursor()
         cursor.execute("select * from plan;")

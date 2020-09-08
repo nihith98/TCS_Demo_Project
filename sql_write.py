@@ -59,3 +59,4 @@ def display_plan():
                 print("{:<15}{:<22}{:<10}{:<10}{:<10}{:<10}{:<20}".format(record[i][0],record[i][1],record[i][2],record[i][3],record[i][4],record[i][5],record[i][6]))
     cursor.close()
     connection.close()
+    return None

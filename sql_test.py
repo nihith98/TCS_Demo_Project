@@ -75,7 +75,7 @@ def delete_plan(up_id):
     return None
     
 def display_plan():
-    connection = mysql.connector.connect(host='localhost',database='test1',user='root',password='januma')
+    connection = mysql.connector.connect(host='127.0.0.1',database='Tariff_Module',user='root',password='Nihith@98')
     if connection.is_connected():
         cursor = connection.cursor()
         cursor.execute("select * from plan;")
@@ -86,3 +86,5 @@ def display_plan():
                 print("{:<15}{:<22}{:<10}{:<10}{:<10}{:<10}{:<20}".format(record[i][0],record[i][1],record[i][2],record[i][3],record[i][4],record[i][5],record[i][6]))
     cursor.close()
     connection.close()
+
+display_plan()

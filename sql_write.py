@@ -6,7 +6,6 @@ def add_plan(add_name,add_tariff,add_validity,add_rental,add_type,enable_flag=1)
     strcmd = "INSERT INTO plans (name, tariff, validity, rental,type,enable_flag) VALUES ('"+add_name+"',"+str(add_tariff)+','+str(add_validity)+",'"+add_rental+"','"+add_type+"',"+str(enable_flag)+")" 
     print(strcmd)
     add_cursor.execute(strcmd)
-    
     mydb.commit()
     add_cursor.close()
     return None

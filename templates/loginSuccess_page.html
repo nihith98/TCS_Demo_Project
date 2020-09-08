@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Admin</title>
+        <style>
+            body{
+                margin: 0px;
+            }
+            .admin-func{
+            display: none;
+            padding-top: 10px;
+            padding-left: 10px;
+            }
+            #display{
+                display: block;
+            }
+            #msg{
+                margin-top: 5px;
+                margin-left: 5px;
+            }
+            .button{
+                width: 14.285%;
+                padding-right: 0px;
+                padding-left: 0px;
+                background-color: #555;
+                color: white;
+                border: 0px;
+                float: left;
+                font-size: 20px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                margin-bottom: 10px;
+            }
+            .button:hover{
+                background-color: #777;
+            }
+            #table,th, td{
+                border: 1px solid black;
+            }
+            th, td {
+                padding: 15px;
+            }
+        </style>
+        <script>
+            function myfunction(eml,id){
+                var i;
+                alllinks = document.getElementsByClassName("admin-func")
+                tabbuttons = document.getElementsByClassName("button")
+                for (i=0;i<alllinks.length;i++)
+                {
+                    alllinks[i].style.display = 'none'
+                    tabbuttons[i].style.backgroundColor = '#555'
+                }
+                var passid = '#'+id
+                document.querySelector(passid).style.display = 'inline-block'
+                eml.style.backgroundColor = 'orange'
+            }
+            function display(){
+
+            }
+        </script>
+    </head>
+    <body>
+        <div class="button-item">
+            <input class="button" type="button" value="Register" onclick="myfunction(this, 'register')">
+            <input class="button" type="button" value="Update" onclick="myfunction(this, 'update')">
+            <input class="button" type="button" value="Disable" onclick="myfunction(this, 'disable')">
+            <input class="button" type="button" value="Enable" onclick="myfunction(this, 'enable')">
+            <input class="button" type="button" value="Delete" onclick="myfunction(this, 'delete')">
+            <input class="button" type="button" value="Display" onclick="myfunction(this,'display')">
+            <a href="{{ url_for('frontpage') }}"><input class="button" id="logout" type="button" value="Logout"></a>
+        </div>
+        <div id="register" class="admin-func">
+            <form action="/admin_login/register" method="POST">
+                <p>Name: <input type="text" name="name" required></p>
+                <p>Tariff: <input type="number" name="tariff" required></p>
+                <p>Validity: <input type="number" name="valid" required></p>
+                <p>Rental: <input type="text" name="rental" required></p>
+                <p>Type: <input type="text" name="type" required></p>
+                <input type="submit" value="Register">
+            </form>
+        </div>
+        <div id="update" class="admin-func">
+            <form action="admin_login/update" method="POST">
+                <p>Plan ID: <input type="text" name="id" required></p>
+                <p>Name: <input type="text" name="name" required></p>
+                <p>Tariff: <input type="number" name="tariff" required></p>
+                <p>Validity: <input type="number" name="valid" required></p>
+                <p>Rental: <input type="text" name="rental" required></p>
+                <p>Type: <input type="text" name="type" required></p>
+                <input type="submit" value="Update">
+            </form>
+        </div>
+        <div id="disable" class="admin-func">
+            <form action="admin_login/disable" method="POST">
+                <p>Plan ID: <input type="text" name="id" required></p>
+                <input type="submit" value="Disable">
+            </form>
+        </div>
+        <div id="enable" class="admin-func">
+            <form action="admin_login/enable" method="POST">
+                <p>Plan ID: <input type="text" name="id" required></p>
+                <input type="submit" value="Enable">
+            </form>
+        </div>
+        <div id="delete" class="admin-func">
+            <form action="admin_login/delete" method="POST">
+                <p>Plan ID: <input type="text" name="id" required></p>
+                <input type="submit" value="Delete">
+            </form>
+        </div>
+        <div id="display" class="admin-func">
+            <table id="table">
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Validity</th>
+                <th>Tariff</th>
+                <th>Rental</th>
+            </tr>
+            {% for row in result %}
+            <tr>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+                <td>{{row[4]}}</td>
+                <td>{{row[3]}}</td>
+                <td>{{row[5]}}</td>
+            </tr>
+            {% endfor %}
+            </table>
+        </div id="msg">
+        {% if msg %}
+            <p>{{msg}}</p>
+        {% endif %}
+    </body>
+</html>

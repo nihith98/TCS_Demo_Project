@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <title>Dispur_Wireless</title>
     <style>
+    *{
+        box-sizing: border-box;
+    }
+    body{
+        margin: 0px;
+    }
     table, th, td {
     border: 1px solid black;
     }
@@ -21,9 +27,10 @@
     padding: 14px 16px;
     font-size: 17px;
     width: 50%;
+    font-size: 35px;
     }
 
-    .tablink:hover {
+    .tablink:hover, #id {
      background-color: #777;
      }
 
@@ -38,6 +45,9 @@
 <body>
 <button class="tablink" onclick="openPage('Customer', this, 'orange') "id="defaultOpen""> Customer</button>
 <button class="tablink" onclick="openPage('Admin', this, 'orange')" >Admin</button>
+{% if msg %}
+    <div id="toast">{{msg}}</div>
+{% endif %}
 
 <div id="Customer" class="tabcontent">
 <h1> Check out the plan details...</h1>
@@ -54,11 +64,11 @@
     <tbody>
     {% for row in resdb %}
     <tr>
+        <td>{{row[0]}}</td>
         <td>{{row[1]}}</td>
-        <td>{{row[4]}}</td>
-        <td>{{row[3]}}</td>
         <td>{{row[2]}}</td>
-        <td>{{row[6]}}</td>
+        <td>{{row[3]}}</td>
+        <td>{{row[4]}}</td>
     </tr>
     {% endfor %}
     </tbody>
@@ -67,6 +77,13 @@
 </div>
 
 <div id="Admin" class="tabcontent">
+    <form action="/admin_login" method="POST">
+        <p>Username</p>
+        <input type="text" name="usrnm">
+        <p>Password</p>
+        <input type="password" name="passwd"><br><br>
+        <input id="login" type="submit" value="Login">
+    </form>
 </div>
 
 <script>

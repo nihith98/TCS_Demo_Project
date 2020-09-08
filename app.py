@@ -7,6 +7,7 @@ app.config['SQLALCHEMY_DATABASE_URI']="mysql+pymysql://root:Nihith@98@127.0.0.1:
 db = SQLAlchemy(app)
 results=db.session.execute("select * from plans")
 resdb=[]
+
 for row in results:
     resdb.append(row)
 

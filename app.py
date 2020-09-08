@@ -3,9 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
-app.config['SQLALCHEMY_DATABASE_URI']="mysql://root:Sneha123@localhost:3306/Plandetails"
+app.config['SQLALCHEMY_DATABASE_URI']="mysql+pymysql://root:Nihith@98@127.0.0.1:3306/Tariff_Module"
 db = SQLAlchemy(app)
-results=db.session.execute("select * from planandtariff")
+results=db.session.execute("select * from plans")
 resdb=[]
 for row in results:
     resdb.append(row)

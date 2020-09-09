@@ -62,7 +62,7 @@
     </head>
     <body>
         <div class="button-item">
-            <input class="button" type="button" value="Register" onclick="myfunction(this, 'register')">
+            <input class="button" type="button" value="Add" onclick="myfunction(this, 'register')">
             <input class="button" type="button" value="Update" onclick="myfunction(this, 'update')">
             <input class="button" type="button" value="Disable" onclick="myfunction(this, 'disable')">
             <input class="button" type="button" value="Enable" onclick="myfunction(this, 'enable')">
@@ -73,18 +73,18 @@
         <div id="register" class="admin-func">
             <form action="/admin_login/register" method="POST">
                 <p>Name: <input type="text" name="name" required></p>
-                <p>Tariff: <input type="number" name="tariff" required></p>
+                <p>Tariff: <input type="number" step="0.01" name="tariff" required></p>
                 <p>Validity: <input type="number" name="valid" required></p>
                 <p>Rental: <input type="text" name="rental" required></p>
                 <p>Type: <input type="text" name="type" required></p>
-                <input type="submit" value="Register">
+                <input type="submit" value="Add">
             </form>
         </div>
         <div id="update" class="admin-func">
             <form action="admin_login/update" method="POST">
                 <p>Plan ID: <input type="text" name="id" required></p>
                 <p>Name: <input type="text" name="name" required></p>
-                <p>Tariff: <input type="number" name="tariff" required></p>
+                <p>Tariff: <input type="number" step="0.01" name="tariff" required></p>
                 <p>Validity: <input type="number" name="valid" required></p>
                 <p>Rental: <input type="text" name="rental" required></p>
                 <p>Type: <input type="text" name="type" required></p>
@@ -117,6 +117,8 @@
                 <th>Validity</th>
                 <th>Tariff</th>
                 <th>Rental</th>
+                <th>Lastcol</th>
+                <th>Anothercol</th>
             </tr>
             {% for row in result %}
             <tr>
@@ -125,6 +127,8 @@
                 <td>{{row[4]}}</td>
                 <td>{{row[3]}}</td>
                 <td>{{row[5]}}</td>
+                <td>{{row[6]}}</td>
+                <td>{{row[0]}}</td>
             </tr>
             {% endfor %}
             </table>

@@ -4,9 +4,9 @@ from admin_login import admin_login
 import sql_write
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
-app.config['SQLALCHEMY_DATABASE_URI']="mysql://root:Google@98@localhost:3306/Tariff_Module"
+app.config['SQLALCHEMY_DATABASE_URI']="mysql+pymysql://root:Nihith@98@localhost:3306/Tariff_Module"
 db = SQLAlchemy(app)
-results=db.session.execute("select * from plandetails")
+results=db.session.execute("SELECT * FROM plans WHERE enable_flag=1")
 resdb=[]
 for row in results:
     resdb.append(row)

@@ -6,7 +6,6 @@
             body{
                 margin: 0px;
             }
-<<<<<<< HEAD
             .alert {
                 padding: 20px;
                 background-color: #87cebb;
@@ -28,8 +27,6 @@
             .closebtn:hover {
                 color: black;
             }
-=======
->>>>>>> 966c7c4d0c5950c74a8e77c2bc8262bb47005ed7
             .admin-func{
             display: none;
             padding-top: 10px;
@@ -95,7 +92,6 @@
             <a href="{{ url_for('frontpage') }}"><input class="button" id="logout" type="button" value="Logout"></a>
         </div>
         <div id="register" class="admin-func">
-<<<<<<< HEAD
             <form action="{{url_for('register_plan')}}" method="POST">
                 <p>Name: <input type="text" name="name" required></p>
                 <p>Tariff: <input type="number" name="tariff" required></p>
@@ -118,7 +114,6 @@
                 <p>Validity: <input type="number" name="valid" required></p>
                 <p>Rental: <input type="text" name="rental" required></p>
                 <p>Type: <input type="radio" name="type" value="V" required>Voice <input type="radio" name="type" value="D" required>Data </p>
-=======
             <form action="/admin_login/register" method="POST">
                 <p>Name: <input type="text" name="name" required></p>
                 <p>Tariff: <input type="number" step="0.01" name="tariff" required></p>
@@ -136,12 +131,10 @@
                 <p>Validity: <input type="number" name="valid" required></p>
                 <p>Rental: <input type="text" name="rental" required></p>
                 <p>Type: <input type="text" name="type" required></p>
->>>>>>> 966c7c4d0c5950c74a8e77c2bc8262bb47005ed7
                 <input type="submit" value="Update">
             </form>
         </div>
         <div id="disable" class="admin-func">
-<<<<<<< HEAD
             <form action="{{url_for('disable_plan')}}" method="POST">
                 <span>Plan ID:</span>
                 <select name="id">
@@ -149,15 +142,12 @@
                         <option value="{{row[0]}}">{{row[0]}}</option>
                     {% endfor %}
                 </select>
-=======
             <form action="admin_login/disable" method="POST">
                 <p>Plan ID: <input type="text" name="id" required></p>
->>>>>>> 966c7c4d0c5950c74a8e77c2bc8262bb47005ed7
                 <input type="submit" value="Disable">
             </form>
         </div>
         <div id="enable" class="admin-func">
-<<<<<<< HEAD
             <form action="{{url_for('enable_plan')}}" method="POST">
                 <span>Plan ID:</span>
                 <select name="id">
@@ -165,15 +155,12 @@
                         <option value="{{row[0]}}">{{row[0]}}</option>
                     {% endfor %}
                 </select>
-=======
             <form action="admin_login/enable" method="POST">
                 <p>Plan ID: <input type="text" name="id" required></p>
->>>>>>> 966c7c4d0c5950c74a8e77c2bc8262bb47005ed7
                 <input type="submit" value="Enable">
             </form>
         </div>
         <div id="delete" class="admin-func">
-<<<<<<< HEAD
             <form action="{{url_for('delete_plan')}}" method="POST">
                 <span>Plan ID:</span>
                 <select name="id">
@@ -181,10 +168,8 @@
                         <option value="{{row[0]}}">{{row[0]}}</option>
                     {% endfor %}
                 </select>
-=======
             <form action="admin_login/delete" method="POST">
                 <p>Plan ID: <input type="text" name="id" required></p>
->>>>>>> 966c7c4d0c5950c74a8e77c2bc8262bb47005ed7
                 <input type="submit" value="Delete">
             </form>
         </div>
@@ -196,11 +181,8 @@
                 <th>Validity</th>
                 <th>Tariff</th>
                 <th>Rental</th>
-<<<<<<< HEAD
-=======
                 <th>Lastcol</th>
                 <th>Anothercol</th>
->>>>>>> 966c7c4d0c5950c74a8e77c2bc8262bb47005ed7
             </tr>
             {% for row in result %}
             <tr>
@@ -209,24 +191,17 @@
                 <td>{{row[4]}}</td>
                 <td>{{row[3]}}</td>
                 <td>{{row[5]}}</td>
-<<<<<<< HEAD
-=======
                 <td>{{row[6]}}</td>
                 <td>{{row[0]}}</td>
->>>>>>> 966c7c4d0c5950c74a8e77c2bc8262bb47005ed7
             </tr>
             {% endfor %}
             </table>
         </div id="msg">
         {% if msg %}
-<<<<<<< HEAD
             <div class="alert">
                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                 <strong>{{ msg }}</strong>
             </div>
-=======
-            <p>{{msg}}</p>
->>>>>>> 966c7c4d0c5950c74a8e77c2bc8262bb47005ed7
         {% endif %}
     </body>
 </html>

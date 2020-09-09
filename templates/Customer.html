@@ -8,6 +8,30 @@
     *{
         box-sizing: border-box;
     }
+<<<<<<< HEAD
+    .alert {
+        padding: 20px;
+        background-color: #87cebb;
+        color: black;
+        font-size : 23px;
+    }
+
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .closebtn:hover {
+        color: black;
+    }
+=======
+>>>>>>> 966c7c4d0c5950c74a8e77c2bc8262bb47005ed7
     body{
         margin: 0px;
     }
@@ -43,10 +67,20 @@
     </style>
 </head>
 <body>
+<<<<<<< HEAD
+<button class="tablink" onclick="openPage('Customer', this, 'orange')"> Customer</button>
+<button class="tablink" onclick="openPage('Admin', this, 'orange')" id="defaultOpen" >Admin</button>
+{% if msg %}
+<div class="alert">
+<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    <strong>{{ msg }}</strong>
+</div>
+=======
 <button class="tablink" onclick="openPage('Customer', this, 'orange') "id="defaultOpen""> Customer</button>
 <button class="tablink" onclick="openPage('Admin', this, 'orange')" >Admin</button>
 {% if msg %}
     <div id="toast">{{msg}}</div>
+>>>>>>> 966c7c4d0c5950c74a8e77c2bc8262bb47005ed7
 {% endif %}
 
 <div id="Customer" class="tabcontent">
@@ -59,8 +93,11 @@
         <th>Validity</th>
         <th>Tariff</th>
         <th>Rental</th>
+<<<<<<< HEAD
+=======
         <th>Col1</th>
         <th>Col2</th>
+>>>>>>> 966c7c4d0c5950c74a8e77c2bc8262bb47005ed7
     </tr>
     </thead>
     <tbody>
@@ -71,8 +108,11 @@
         <td>{{row[2]}}</td>
         <td>{{row[3]}}</td>
         <td>{{row[4]}}</td>
+<<<<<<< HEAD
+=======
         <td>{{row[5]}}</td>
         <td>{{row[6]}}</td>
+>>>>>>> 966c7c4d0c5950c74a8e77c2bc8262bb47005ed7
     </tr>
     {% endfor %}
     </tbody>

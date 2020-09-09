@@ -72,22 +72,22 @@
         </div>
         <div id="register" class="admin-func">
             <form action="/admin_login/register" method="POST">
-                <p>Name: <input type="text" name="name" required></p>
+                <p>Name: <input type="text" name="name" maxlength="30" required></p>
                 <p>Tariff: <input type="number" step="0.01" name="tariff" required></p>
                 <p>Validity: <input type="number" name="valid" required></p>
                 <p>Rental: <input type="text" name="rental" required></p>
-                <p>Type: <input type="text" name="type" required></p>
+                <p>Type: <input type="text" name="type" maxlength="5" required></p>
                 <input type="submit" value="Add">
             </form>
         </div>
         <div id="update" class="admin-func">
             <form action="admin_login/update" method="POST">
                 <p>Plan ID: <input type="text" name="id" required></p>
-                <p>Name: <input type="text" name="name" required></p>
+                <p>Name: <input type="text" name="name" maxlength="30" required></p>
                 <p>Tariff: <input type="number" step="0.01" name="tariff" required></p>
                 <p>Validity: <input type="number" name="valid" required></p>
                 <p>Rental: <input type="text" name="rental" required></p>
-                <p>Type: <input type="text" name="type" required></p>
+                <p>Type: <input type="text" name="type" maxlength="5" required></p>
                 <input type="submit" value="Update">
             </form>
         </div>

@@ -2,17 +2,23 @@ from flask import Flask,render_template,request,url_for,redirect
 from flask_sqlalchemy import SQLAlchemy
 from admin_login import admin_login
 import sql_write
+import time
 app = Flask(__name__)
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
-app.config['SQLALCHEMY_DATABASE_URI']="mysql://root:Google@98@localhost:3306/Tariff_Module"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=True
+app.config['SQLALCHEMY_DATABASE_URI']="mysql+pymysql://root:Nihith@98@localhost:3306/Tariff_Module"
 db = SQLAlchemy(app)
-results=db.session.execute("select * from plandetails")
+results=db.session.execute("SELECT * FROM plans WHERE enable_flag=1")
 resdb=[]
 for row in results:
     resdb.append(row)
 ########## Homepage ###################
 @app.route('/')
 def frontpage():
+    
+    results=db.session.execute("SELECT * FROM plans WHERE enable_flag=1")
+    resdb=[]
+    for row in results:
+        resdb.append(row)
     return render_template("Customer.html",resdb=resdb)
 ##### HomePage after login failure #########
 @app.route('/<msg>')
@@ -24,7 +30,7 @@ def frontpage_unsuccessful(msg):
 ####### Login Validation #######
 @app.route('/admin_login', methods=['POST'])
 def login_validation():
-    msg=""
+    msg = ""
     username = request.form['usrnm']
     password = request.form['passwd']
     result = admin_login(username, password)
@@ -105,3 +111,16 @@ def delete_plan():
     return redirect(url_for('adminpage', msg=msg))
 
 app.run(debug=True)
+while(True):
+    time.sleep(5)
+    results=db.session.execute("SELECT * FROM plans WHERE enable_flag=1")
+    resdb=[]
+    for row in results:
+        resdb.append(row)
+    @app.route('/')
+    def frontpage():
+        return render_template("Customer.html",resdb=resdb)
+    
+    
+    
+    

@@ -2,15 +2,12 @@ from flask import Flask,render_template,request,url_for,redirect
 from flask_sqlalchemy import SQLAlchemy
 from admin_login import admin_login
 import sql_write
-import time
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=True
 app.config['SQLALCHEMY_DATABASE_URI']="mysql+pymysql://root:Nihith@98@localhost:3306/Tariff_Module"
 db = SQLAlchemy(app)
-results=db.session.execute("SELECT * FROM plans WHERE enable_flag=1")
-resdb=[]
-for row in results:
-    resdb.append(row)
+
+
 ########## Homepage ###################
 @app.route('/')
 def frontpage():
@@ -20,12 +17,16 @@ def frontpage():
     for row in results:
         resdb.append(row)
     return render_template("Customer.html",resdb=resdb)
+
+
 ##### HomePage after login failure #########
 @app.route('/<msg>')
 def frontpage_unsuccessful(msg):
     if msg == 'IP':
         msg = 'Incorrect password or username'
     return render_template('Customer.html', msg=msg)
+
+
 
 ####### Login Validation #######
 @app.route('/admin_login', methods=['POST'])
@@ -39,11 +40,15 @@ def login_validation():
     msg = "IP"
     return redirect(url_for('frontpage_unsuccessful', msg=msg))
 
+
+
 ############ Admin page #################
 @app.route('/admin')
 def admin_page():
     record = sql_write.display_plan()
     return render_template('loginSuccess_page.html', result=record)
+
+
 
 ############ Admin page after one iteration #############
 @app.route('/admin/<msg>')
@@ -61,6 +66,8 @@ def adminpage(msg):
         msg = 'Plan deleted successfully'
     return render_template('loginSuccess_page.html', result=record, msg=msg)
 
+
+
 ####### Register Plan #######
 @app.route('/admin_login/register', methods=['POST'])
 def register_plan():
@@ -72,6 +79,8 @@ def register_plan():
     sql_write.add_plan(add_name,add_tariff,add_validity,add_rental,add_type)
     msg = 'AS'
     return redirect(url_for('adminpage', msg=msg))
+
+
 
 ######## Update Plan ########
 @app.route('/admin_login/update', methods=['POST'])
@@ -86,6 +95,8 @@ def update_plan():
     msg = 'US'
     return redirect(url_for('adminpage', msg=msg))
 
+
+
 ######## Disable Plan ##########
 @app.route('/admin_login/disable', methods=['POST'])
 def disable_plan():
@@ -93,6 +104,8 @@ def disable_plan():
     sql_write.disable_plan(up_id)
     msg = 'DS'
     return redirect(url_for('adminpage',msg=msg))
+
+
 
 ######## Enable Plan ########
 @app.route('/admin_login/enable', methods=['POST'])
@@ -102,6 +115,8 @@ def enable_plan():
     msg = 'ES'
     return redirect(url_for('adminpage', msg=msg))
 
+
+
 ####### Delete Plan #########
 @app.route('/admin_login/delete', methods=['POST'])
 def delete_plan():
@@ -109,6 +124,8 @@ def delete_plan():
     sql_write.delete_plan(up_id)
     msg = 'DP'
     return redirect(url_for('adminpage', msg=msg))
+
+
 
 app.run(debug=True)
 while(True):
@@ -120,7 +137,3 @@ while(True):
     @app.route('/')
     def frontpage():
         return render_template("Customer.html",resdb=resdb)
-    
-    
-    
-    
